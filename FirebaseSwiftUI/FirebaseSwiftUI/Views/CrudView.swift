@@ -8,8 +8,27 @@
 import SwiftUI
 
 struct CrudView: View {
+    
+    private var authManager = AuthController.createObject()
+    @State private var isActive: Bool = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack
+        {
+            Button("SIGN OUT") {
+                authManager.signOut()
+                isActive.toggle()
+            }
+            .navigationDestination(isPresented: $isActive) {
+                ContentView()
+            }
+            .bold()
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(.red)
+            .foregroundStyle(.white)
+        }
+        .padding()
     }
 }
 

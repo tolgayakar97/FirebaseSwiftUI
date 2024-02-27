@@ -18,28 +18,24 @@ struct ContentView: View {
                         SignInView()
                     } label: {
                         Text("SIGN IN")
-                            .frame(width:100, height: 75)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .foregroundColor(.white)
                             .bold()
                             .background(.red)
-                            .padding()
                     }
-                    .padding()
-                    
+
                     NavigationLink {
                         SignInView()
                     } label: {
                         Text("LOG IN")
-                            .frame(width:100, height: 75)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .foregroundColor(.white)
                             .bold()
                             .background(.blue)
-                            .padding()
                     }
                 }
             }
         }
-        .padding()
     }
 }
 

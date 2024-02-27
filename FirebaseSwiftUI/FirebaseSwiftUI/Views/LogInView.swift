@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct LogInView: View {
     
@@ -14,22 +15,47 @@ struct LogInView: View {
     @FocusState private var emailFocus: Bool
     @FocusState private var passwordFocus: Bool
     
+    @State private var isActive: Bool = false
+    
     var authController = AuthController.createObject()
     
     var body: some View {
-        Form
-        {
-            TextField("E-MAIL", text: $email)
-                .focused($emailFocus)
+        NavigationStack{
+            VStack
+            {
+                TextField("E-MAIL", text: $email)
+                    .focused($emailFocus)
+                    .focused($emailFocus)
+                    .padding()
+                    .border(.gray)
+                
+                TextField("PASSWORD", text: $password)
+                    .focused($passwordFocus)
+                    .focused($emailFocus)
+                    .padding()
+                    .border(.gray)
+                
+                
+                
+                Button("LOG IN") {
+                    authController.login(email: email, password: password)
+                    isActive.toggle()
+                }
+                .frame(maxWidth: .infinity, maxHeight: 50)
+                .foregroundStyle(.white)
+                .bold()
+                .background(.blue)
+                .buttonStyle(.automatic)
+                .navigationDestination(isPresented: $isActive) {
+                    CrudView()
+                }
+                
+            }
+            .ignoresSafeArea()
+            .navigationTitle("LOG IN")
+            .padding()
             
-            TextField("PASSWORD", text: $password)
-                .focused($passwordFocus)
-            
-            Button(action: {
-                //Log in operations
-            }, label: {
-                Text("LOG IN")
-            })
+            Spacer()
         }
     }
 }

@@ -4,6 +4,7 @@
 
 ## User settings
 xcuserdata/
+Xcshareddata/
 FirebaseSwiftUI/FirebaseSwiftUI/GoogleService-Info.plist
 FirebaseSwiftUI/.DS_Store
 Pods/
